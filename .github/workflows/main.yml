@@ -41,6 +41,6 @@ jobs:
         with:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }} 
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
-          args: The ${{ github.event_name }} has been triggered.
+          args: The ${{ github.event_name }} has been triggered
 
 

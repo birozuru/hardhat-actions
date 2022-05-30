@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  composable_node:
+    image: composablefi/composable:latest
+    container_name: composable_node
+    volumes:
+      - ./chain-data:/chain-data
+    ports:
+      - 9833:9833
+      - 9844:9844
+      - 40333:40333
+      - 30333:30333
+    restart: unless-stopped
+    entrypoint: [composable]
+    command:
+      - '--collator'
+      - '--chain=picasso'
+      - '--pruning=archive'
+      - '--base-path=/chain-data'
+      - '--unsafe-ws-external'
+      - '--unsafe-rpc-external'
+      - '--listen-addr=/ip4/0.0.0.0/tcp/30334'
+      - '--execution=wasm'
+      - '--'
+      - '--execution=wasm'
+      - '--listen-addr=/ip4/0.0.0.0/tcp/30333'

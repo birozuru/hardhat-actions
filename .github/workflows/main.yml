@@ -15,13 +15,32 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install
-      - run: npm install --save-dev hardhat
-      - run: npm run test
-      - run: npm run compile
-      - run: npm run deploy
-      
+
+      - name: Install node package manager
+        run: npm install
+
+      - name: Install hardhat dependency
+        run: npm install --save-dev hardhat
+
+      - name: Run test for smart contract
+        run: npm run test
+
+      - name: Compile contract binary
+        run: npm run compile
+
+      - name: Deploy smart contract
+        run: npm run deploy
+
+      - name: send custom message with args
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }} 
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          args: The ${{ github.event_name }} has been triggered.
+
+

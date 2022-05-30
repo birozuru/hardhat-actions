@@ -37,11 +37,11 @@ jobs:
       - name: Deploy smart contract
         run: npm run deploy
 
-      - name: send custom message 
-        uses: appleboy/discord-action@master
-        with:
-          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }} 
-          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
-          args: The ${{ github.event_name }} has been triggered
+      # - name: send custom message 
+      #   uses: appleboy/discord-action@master
+      #   with:
+      #     webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }} 
+      #     webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+      #     args: The ${{ github.event_name }} has been triggered
 
 

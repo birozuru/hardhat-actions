@@ -14,7 +14,8 @@ jobs:
         node-version: [16.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Actions
+        uses: actions/checkout@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -36,7 +37,7 @@ jobs:
       - name: Deploy smart contract
         run: npm run deploy
 
-      - name: send custom message with args
+      - name: send custom message 
         uses: appleboy/discord-action@master
         with:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }} 

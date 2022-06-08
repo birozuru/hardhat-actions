@@ -5,14 +5,12 @@ on:
     inputs:
       name:
         type: choice
-        description: environments
+        description: Network Environment
         options:
           - dali
           - picasso
           - composable
-      version:
-        description: environment versions
-        required: true
+
 jobs:
   dali-client-release:
     if: github.event.inputs.name == 'dali'

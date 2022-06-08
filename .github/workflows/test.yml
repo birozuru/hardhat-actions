@@ -1,0 +1,46 @@
+name: "Release Rollout"
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        type: choice
+        description: environments
+        options:
+          - dali
+          - picasso
+          - composable
+      version:
+        description: environment versions
+        required: true
+jobs:
+  dali-client-release:
+    if: github.event.inputs.name == 'dali'
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing out
+        run: echo "dali-client-release"
+  
+  picasso-client-release:
+    if: github.event.inputs.name == 'picasso'
+    concurrency:
+      group: picasso-${{ github.ref }}
+      cancel-in-progress: true
+    strategy:
+      fail-fast: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing out 2
+        run: echo "picasso-client-release"
+  
+  composable-client-release:
+    if: github.event.inputs.name == 'composable'
+    concurrency:
+      group: composable-${{ github.ref }}
+      cancel-in-progress: true
+    strategy:
+      fail-fast: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing out 3
+        run: echo "composable-client-release"
